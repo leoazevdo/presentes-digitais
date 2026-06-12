@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlueGift | Criador de Presente Digital</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Esconde a barra de rolagem do carrossel para ficar idêntico ao app */
+        .scrollbar-none::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-none {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 min-h-screen antialiased">
+
+    <div class="container mx-auto px-4 py-6 sm:py-10 max-w-6xl">
+        <header class="text-center mb-8 sm:mb-12">
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-blue-600 flex items-center justify-center gap-2 tracking-tight">
+                <i class="fas fa-heart-pulse text-blue-500"></i> BlueGift <span class="text-slate-400 font-light">| Loveify</span>
+            </h1>
+            <p class="text-slate-500 mt-2 text-xs sm:text-base px-4">Monte uma experiência digital exclusiva estilo Spotify para quem você ama.</p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+
+            <div class="bg-white p-5 sm:p-8 rounded-2xl shadow-sm border border-slate-200 order-1">
+                <div class="flex justify-between items-center mb-6">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400" id="step-indicator">Passo 1 de 6</span>
+                    <div class="h-1.5 w-1/2 bg-slate-100 rounded-full overflow-hidden">
+                        <div id="progress-bar" class="h-full bg-blue-600 transition-all duration-300" style="width: 16.6%"></div>
+                    </div>
+                </div>
+
+                <div id="form-steps" class="min-h-[280px] sm:min-h-[250px]">
+                    <div id="step-1" class="step-content space-y-4">
+                        <h2 class="text-lg sm:text-xl font-bold text-slate-900 mb-1">Como vocês se chamam?</h2>
+                        <p class="text-xs text-slate-400 mb-4">Esses nomes aparecerão no topo e como os "artistas" da página.</p>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Seu Nome</label>
+                            <input type="text" id="input-seu-nome" placeholder="Ex: Gabriel" class="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 p-3 rounded-xl text-slate-800 focus:outline-none transition shadow-inner">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Nome do seu Amor</label>
+                            <input type="text" id="input-amor-nome" placeholder="Ex: Mariana" class="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 p-3 rounded-xl text-slate-800 focus:outline-none transition shadow-inner">
+                        </div>
+                    </div>
+
+                    <div id="step-2" class="step-content space-y-4 hidden">
+                        <h2 class="text-lg sm:text-xl font-bold text-slate-900 mb-1">Quando tudo começou?</h2>
+                        <p class="text-xs text-slate-400 mb-4">Insira a data e a hora em que vocês começaram a namorar/ficar juntos.</p>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Data e Hora de Início</label>
+                            <input type="datetime-local" id="input-data" class="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 p-3 rounded-xl text-slate-800 focus:outline-none transition shadow-inner">
+                        </div>
+                    </div>
+
+                    <div id="step-3" class="step-content space-y-4 hidden">
+                        <h2 class="text-lg sm:text-xl font-bold text-slate-900 mb-1">Dê um título para esse momento</h2>
+                        <p class="text-xs text-slate-400 mb-4">Esse será o título principal que fica no topo do player.</p>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Título da Playlist</label>
+                            <input type="text" id="input-titulo" placeholder="Ex: Nossa Playlist de Amor" class="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 p-3 rounded-xl text-slate-800 focus:outline-none transition shadow-inner">
+                        </div>
+                    </div>
+
+                    <div id="step-4" class="step-content space-y-4 hidden">
+                        <h2 class="text-lg sm:text-xl font-bold text-slate-900 mb-1">Qual é a música de vocês?</h2>
+                        <p class="text-xs text-slate-400 mb-4">Busque pelo nome da música ou artista e selecione na lista.</p>
+
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
+                                <i class="fas fa-search"></i>
+                            </span>
+                            <input type="text" id="input-busca-musica" placeholder="Busque por música ou artista..." class="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 pl-10 pr-4 p-3 rounded-xl text-slate-800 focus:outline-none transition shadow-inner">
+                        </div>
+
+                        <div id="lista-resultados-musica" class="bg-white border border-slate-100 rounded-xl max-h-48 overflow-y-auto hidden shadow-lg divide-y divide-slate-50"></div>
+
+                        <div class="pt-2">
+                            <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Nome da Música (Editável)</label>
+                            <input type="text" id="input-nome-musica" placeholder="Nome que aparecerá na tela..." class="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 p-3 rounded-xl text-slate-800 focus:outline-none transition shadow-inner">
+                        </div>
+                    </div>
+
+                    <div id="step-5" class="step-content space-y-4 hidden">
+                        <h2 class="text-lg sm:text-xl font-bold text-slate-900 mb-1">Escolha as fotos de vocês</h2>
+                        <p class="text-xs text-slate-400 mb-4">Selecione até 5 fotos marcantes. Elas vão virar a capa do álbum.</p>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Enviar Fotos (Máx. 5)</label>
+                            <input type="file" id="input-fotos" multiple accept="image/*" class="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 p-3 rounded-xl text-slate-800 focus:outline-none transition">
+                        </div>
+                    </div>
+
+                    <div id="step-6" class="step-content space-y-4 hidden">
+                        <h2 class="text-lg sm:text-xl font-bold text-slate-900 mb-1">Escreva sua dedicatória</h2>
+                        <p class="text-xs text-slate-400 mb-4">Abra o coração! Essa mensagem vai aparecer no lugar da letra da música.</p>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Sua Mensagem</label>
+                            <textarea id="input-mensagem" rows="4" placeholder="Escreva aqui o quanto você ama essa pessoa..." class="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 p-3 rounded-xl text-slate-800 focus:outline-none transition shadow-inner resize-none"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between mt-8 pt-4 border-t border-slate-100">
+                    <button id="btn-voltar" class="px-4 py-2 text-sm font-semibold text-slate-400 hover:text-slate-600 transition disabled:opacity-50" disabled>Voltar</button>
+                    <div class="flex gap-2">
+                        <button id="btn-previa" class="px-4 py-2 text-sm font-semibold bg-slate-100 text-slate-700 rounded-full hover:bg-slate-200 transition">
+                            <i class="far fa-eye mr-1"></i> Prévia
+                        </button>
+                        <button id="btn-avancar" class="px-6 py-2 text-sm font-bold bg-blue-600 text-white rounded-full hover:bg-blue-700 hover:scale-102 transition shadow-md shadow-blue-200">Avançar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SEÇÃO DE PREVIEW (MOCKUP DO SMARTPHONE) -->
+            <div id="preview-section" class="flex flex-col items-center sticky top-8 order-2 mt-4 lg:mt-0">
+                <div class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Visualização em Tempo Real
+                </div>
+
+                <div class="w-full max-w-[340px] sm:max-w-[375px] bg-[#121212] text-white rounded-[40px] p-5 sm:p-6 shadow-2xl border-4 border-neutral-800 overflow-hidden relative">
+
+                    <div class="flex justify-between items-center mb-5 text-xs text-neutral-400 font-medium">
+                        <i class="fas fa-chevron-down"></i>
+                        <span id="preview-titulo" class="truncate max-w-[180px] font-bold text-white">Nossa Playlist de Amor</span>
+                        <i class="fas fa-ellipsis-h"></i>
+                    </div>
+
+                    <div class="aspect-square w-full bg-neutral-800 rounded-md shadow-2xl mb-6 relative overflow-hidden group">
+                        <div id="preview-foto-placeholder" class="absolute inset-0 flex items-center justify-center text-neutral-600 z-10">
+                            <i class="far fa-image text-6xl"></i>
+                        </div>
+
+                        <div id="carousel-container" class="absolute inset-0 flex overflow-x-auto snap-x snap-mandatory scrollbar-none hidden">
+                        </div>
+
+                        <div id="carousel-dots" class="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 z-20 hidden">
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between items-center mb-6">
+                        <div class="truncate pr-4">
+                            <h3 id="preview-track-name" class="text-lg font-bold tracking-tight truncate">Nossa Playlist de Amor</h3>
+                            <p id="preview-casal" class="text-xs sm:text-sm text-neutral-400 truncate mt-0.5">Gabriel & Mariana</p>
+                        </div>
+                        <button class="text-[#1ED760] text-xl"><i class="fas fa-circle-plus"></i></button>
+                    </div>
+
+                    <div id="spotify-player-wrapper" class="mb-6">
+                        <div class="w-full bg-neutral-700 h-1 rounded-full overflow-hidden mb-2">
+                            <div class="bg-white h-full w-1/4"></div>
+                        </div>
+                        <div class="flex justify-between text-[10px] text-neutral-400 font-mono mb-4">
+                            <span>0:00</span>
+                            <span>3:45</span>
+                        </div>
+                        <div class="flex justify-between items-center px-4">
+                            <i class="fas fa-shuffle text-neutral-400 text-sm"></i>
+                            <i class="fas fa-backward-step text-white text-base"></i>
+                            <i class="fas fa-play-circle text-white text-4xl"></i>
+                            <i class="fas fa-forward-step text-white text-base"></i>
+                            <i class="fas fa-repeat text-[#1ED760] text-sm"></i>
+                        </div>
+                    </div>
+
+                    <!-- SEÇÃO LETRA (Agora envelopada corretamente ANTES do fechamento do smartphone) -->
+                    <div class="bg-[#400e18] rounded-2xl p-4 border border-neutral-800/50 space-y-4">
+                        <div class="flex justify-between items-center text-[10px] font-bold uppercase tracking-wider text-neutral-300">
+                            <span>Letra / Nossa História</span>
+                            <i class="fas fa-expand-alt text-xs"></i>
+                        </div>
+
+                        <div class="bg-black/30 p-2.5 rounded-xl">
+                            <p class="text-[9px] font-bold text-[#1ED760] uppercase tracking-widest mb-2 text-center">Tempo Juntos</p>
+                            <div id="preview-contador" class="grid grid-cols-4 gap-1 text-center font-mono text-xs">
+                                <div class="bg-neutral-900/60 p-1.5 rounded-lg">
+                                    <span class="block font-extrabold text-white">00</span>
+                                    <span class="text-[7px] uppercase text-neutral-400">Dias</span>
+                                </div>
+                                <div class="bg-neutral-900/60 p-1.5 rounded-lg">
+                                    <span class="block font-extrabold text-white">00</span>
+                                    <span class="text-[7px] uppercase text-neutral-400">Horas</span>
+                                </div>
+                                <div class="bg-neutral-900/60 p-1.5 rounded-lg">
+                                    <span class="block font-extrabold text-white">00</span>
+                                    <span class="text-[7px] uppercase text-neutral-400">Min</span>
+                                </div>
+                                <div class="bg-neutral-900/60 p-1.5 rounded-lg">
+                                    <span class="block font-extrabold text-[#1ED760] animate-pulse">00</span>
+                                    <span class="text-[7px] uppercase text-neutral-400">Seg</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p id="preview-mensagem" class="text-sm sm:text-base font-bold text-white leading-relaxed tracking-tight break-words">
+                            "Sua mensagem carinhosa aparecerá bem aqui, dividida em linhas como a letra de uma música oficial do Spotify..."
+                        </p>
+                    </div>
+
+                </div> <!-- FIM DO SMARTPHONE -->
+            </div>
+
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

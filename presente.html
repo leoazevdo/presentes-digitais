@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossa Playlist de Amor</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212;
+        }
+
+        .scrollbar-none::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-none {
+            -ms-overflow-style: none;
+            scroll-width: none;
+        }
+    </style>
+</head>
+
+<body class="text-white min-h-screen flex items-center justify-center antialiased p-4">
+
+    <div id="loading-screen"
+        class="fixed inset-0 bg-[#121212] z-50 flex flex-col items-center justify-center gap-4 transition-opacity duration-500">
+        <i class="fas fa-heart-pulse text-4xl text-emerald-500 animate-pulse"></i>
+        <p class="text-xs font-bold uppercase tracking-widest text-neutral-400">Abrindo seu presente...</p>
+    </div>
+
+    <main id="main-content"
+        class="w-full max-w-[375px] bg-[#121212] rounded-[40px] p-6 shadow-2xl border-4 border-neutral-800 overflow-hidden hidden opacity-0 transition-opacity duration-700">
+
+        <div class="flex justify-between items-center mb-5 text-xs text-neutral-400 font-medium">
+            <i class="fas fa-chevron-down"></i>
+            <span id="view-titulo" class="truncate max-w-[180px] font-bold text-white">Carregando...</span>
+            <i class="fas fa-ellipsis-h"></i>
+        </div>
+
+        <div class="aspect-square w-full bg-neutral-800 rounded-md shadow-2xl mb-6 relative overflow-hidden">
+            <div id="view-carousel" class="absolute inset-0 flex overflow-x-auto snap-x snap-mandatory scrollbar-none">
+            </div>
+            <div id="view-dots" class="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 z-20">
+            </div>
+        </div>
+
+        <div class="flex justify-between items-center mb-6">
+            <div class="truncate pr-4">
+                <h3 id="view-track-name" class="text-lg font-bold tracking-tight truncate">Nossa Música</h3>
+                <p id="view-casal" class="text-sm text-neutral-400 truncate mt-0.5">Nome & Nome</p>
+            </div>
+            <button class="text-[#1ED760] text-xl"><i class="fas fa-circle-plus"></i></button>
+        </div>
+
+        <div id="view-player-wrapper" class="mb-6">
+            <div class="w-full bg-neutral-700 h-1 rounded-full overflow-hidden mb-2">
+                <div class="bg-white h-full w-0" id="view-barra-progresso"></div>
+            </div>
+            <div class="flex justify-between text-[10px] text-neutral-400 font-mono mb-4">
+                <span id="view-tempo-atual">0:00</span>
+                <span id="view-tempo-total">0:00</span>
+            </div>
+            <div class="flex justify-between items-center px-4">
+                <i class="fas fa-shuffle text-neutral-500 text-sm"></i>
+                <i class="fas fa-backward-step text-neutral-400 text-base"></i>
+                <button id="view-btn-play" class="text-white text-4xl focus:outline-none">
+                    <i class="fas fa-play-circle" id="view-icone-play"></i>
+                </button>
+                <i class="fas fa-forward-step text-neutral-400 text-base"></i>
+                <i class="fas fa-repeat text-neutral-500 text-sm"></i>
+            </div>
+        </div>
+
+        <div class="bg-[#400e18] rounded-2xl p-4 border border-neutral-800/50 space-y-4">
+            <div
+                class="flex justify-between items-center text-[10px] font-bold uppercase tracking-wider text-neutral-300">
+                <span>Letra / Nossa História</span>
+                <i class="fas fa-expand-alt text-xs"></i>
+            </div>
+
+            <div class="bg-black/30 p-2.5 rounded-xl">
+                <p class="text-[9px] font-bold text-[#1ED760] uppercase tracking-widest mb-2 text-center">Tempo Juntos
+                </p>
+                <div id="view-contador" class="grid grid-cols-4 gap-1 text-center font-mono text-xs">
+                    <div class="bg-neutral-900/60 p-1.5 rounded-lg"><span class="block font-extrabold">00</span><span
+                            class="text-[7px] text-neutral-400 uppercase">Dias</span></div>
+                    <div class="bg-neutral-900/60 p-1.5 rounded-lg"><span class="block font-extrabold">00</span><span
+                            class="text-[7px] text-neutral-400 uppercase">Horas</span></div>
+                    <div class="bg-neutral-900/60 p-1.5 rounded-lg"><span class="block font-extrabold">00</span><span
+                            class="text-[7px] text-neutral-400 uppercase">Min</span></div>
+                    <div class="bg-neutral-900/60 p-1.5 rounded-lg"><span
+                            class="block font-extrabold text-[#1ED760] animate-pulse">00</span><span
+                            class="text-[7px] text-neutral-400 uppercase">Seg</span></div>
+                </div>
+            </div>
+
+            <p id="view-mensagem" class="text-base font-bold text-white leading-relaxed tracking-tight break-words">
+                Carregando dedicatória...
+            </p>
+        </div>
+
+    </main>
+
+    <script src="presente.js"></script>
+</body>
+
+</html>
