@@ -174,14 +174,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
             item.addEventListener('click', async () => {
                 const termoBuscaYT = `${nomeMusica} ${artista} official audio`;
-                if (inputNomeMusica) inputNomeMusica.value = `${nomeMusica} - ${artista}`;
+                
+                if (inputNomeMusica) {
+                    inputNomeMusica.value = `${nomeMusica} - ${artista}`;
+                    // GATILHO CORRIGIDO: Força o disparo do evento 'input' para atualizar o mockup na hora!
+                    inputNomeMusica.dispatchEvent(new Event('input'));
+                }
 
+                // Mapeamento duplo para cobrir qualquer variação de ID usada no mockup do HTML
                 const elementoNomePreview = document.getElementById('preview-nome-musica');
                 const elementoArtistaPreview = document.getElementById('preview-artista-musica');
                 const elementoCapaPreview = document.getElementById('preview-capa-musica');
+                const elementoTrackName = document.getElementById('preview-track-name');
 
                 if (elementoNomePreview) elementoNomePreview.textContent = nomeMusica;
+                if (elementoTrackName) elementoTrackName.textContent = `${nomeMusica} - ${artista}`;
                 if (elementoArtistaPreview) elementoArtistaPreview.textContent = artista;
+                
                 if (elementoCapaPreview && track.album.images[0]?.url) {
                     elementoCapaPreview.src = track.album.images[0].url;
                 }
