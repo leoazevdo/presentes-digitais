@@ -11,7 +11,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
     <style>
         body {
@@ -34,10 +35,13 @@
 
     <div class="container mx-auto px-4 py-6 sm:py-10 max-w-6xl">
         <header class="text-center mb-8 sm:mb-12">
-            <h1 class="text-2xl sm:text-3xl font-extrabold text-blue-600 flex items-center justify-center gap-2 tracking-tight">
-                <i class="fas fa-heart-pulse text-blue-500"></i> BlueGift <span class="text-slate-400 font-light">| Loveify</span>
+            <h1
+                class="text-2xl sm:text-3xl font-extrabold text-blue-600 flex items-center justify-center gap-2 tracking-tight">
+                <i class="fas fa-heart-pulse text-blue-500"></i> BlueGift <span class="text-slate-400 font-light">|
+                    Loveify</span>
             </h1>
-            <p class="text-slate-500 mt-2 text-xs sm:text-base px-4">Monte uma experiência digital exclusiva estilo Spotify para quem você ama.</p>
+            <p class="text-slate-500 mt-2 text-xs sm:text-base px-4">Monte uma experiência digital exclusiva estilo
+                Spotify para quem você ama.</p>
         </header>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
@@ -45,89 +49,117 @@
             <!-- COLUNA ESQUERDA: FORMULÁRIO -->
             <div class="bg-white p-5 sm:p-8 rounded-2xl shadow-sm border border-slate-200 order-1">
                 <div class="flex justify-between items-center mb-6">
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400" id="step-indicator">Passo 1 de 6</span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400" id="step-indicator">Passo 1
+                        de 6</span>
                     <div class="h-1.5 w-1/2 bg-slate-100 rounded-full overflow-hidden">
-                        <div id="progress-bar" class="h-full bg-blue-600 transition-all duration-300" style="width: 16.6%"></div>
+                        <div id="progress-bar" class="h-full bg-blue-600 transition-all duration-300"
+                            style="width: 16.6%"></div>
                     </div>
                 </div>
 
                 <div id="form-steps" class="min-h-[280px] sm:min-h-[250px]">
                     <div id="step-1" class="step-content space-y-4">
                         <h2 class="text-lg sm:text-xl font-bold text-slate-900 mb-1">Como vocês se chamam?</h2>
-                        <p class="text-xs text-slate-400 mb-4">Esses nomes aparecerão no topo e como os "artistas" da página.</p>
+                        <p class="text-xs text-slate-400 mb-4">Esses nomes aparecerão no topo e como os "artistas" da
+                            página.</p>
                         <div>
                             <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Seu Nome</label>
-                            <input type="text" id="input-seu-nome" placeholder="Ex: Gabriel" class="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 p-3 rounded-xl text-slate-800 focus:outline-none transition shadow-inner">
+                            <input type="text" id="input-seu-nome" placeholder="Ex: Gabriel"
+                                class="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 p-3 rounded-xl text-slate-800 focus:outline-none transition shadow-inner">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Nome do seu Amor</label>
-                            <input type="text" id="input-amor-nome" placeholder="Ex: Mariana" class="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 p-3 rounded-xl text-slate-800 focus:outline-none transition shadow-inner">
+                            <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Nome do seu
+                                Amor</label>
+                            <input type="text" id="input-amor-nome" placeholder="Ex: Mariana"
+                                class="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 p-3 rounded-xl text-slate-800 focus:outline-none transition shadow-inner">
                         </div>
                     </div>
 
                     <div id="step-2" class="step-content space-y-4 hidden">
                         <h2 class="text-lg sm:text-xl font-bold text-slate-900 mb-1">Quando tudo começou?</h2>
-                        <p class="text-xs text-slate-400 mb-4">Insira a data e a hora em que vocês começaram a namorar/ficar juntos.</p>
+                        <p class="text-xs text-slate-400 mb-4">Insira a data e a hora em que vocês começaram a
+                            namorar/ficar juntos.</p>
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Data e Hora de Início</label>
-                            <input type="datetime-local" id="input-data" class="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 p-3 rounded-xl text-slate-800 focus:outline-none transition shadow-inner">
+                            <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Data e Hora de
+                                Início</label>
+                            <input type="datetime-local" id="input-data"
+                                class="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 p-3 rounded-xl text-slate-800 focus:outline-none transition shadow-inner">
                         </div>
                     </div>
 
                     <div id="step-3" class="step-content space-y-4 hidden">
                         <h2 class="text-lg sm:text-xl font-bold text-slate-900 mb-1">Dê um título para esse momento</h2>
-                        <p class="text-xs text-slate-400 mb-4">Esse será o título principal que fica no topo do player.</p>
+                        <p class="text-xs text-slate-400 mb-4">Esse será o título principal que fica no topo do player.
+                        </p>
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Título da Playlist</label>
-                            <input type="text" id="input-titulo" placeholder="Ex: Nossa Playlist de Amor" class="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 p-3 rounded-xl text-slate-800 focus:outline-none transition shadow-inner">
+                            <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Título da
+                                Playlist</label>
+                            <input type="text" id="input-titulo" placeholder="Ex: Nossa Playlist de Amor"
+                                class="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 p-3 rounded-xl text-slate-800 focus:outline-none transition shadow-inner">
                         </div>
                     </div>
 
                     <div id="step-4" class="step-content space-y-4 hidden">
                         <h2 class="text-lg sm:text-xl font-bold text-slate-900 mb-1">Qual é a música de vocês?</h2>
-                        <p class="text-xs text-slate-400 mb-4">Busque pelo nome da música ou artista e selecione na lista.</p>
+                        <p class="text-xs text-slate-400 mb-4">Busque pelo nome da música ou artista e selecione na
+                            lista.</p>
 
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
                                 <i class="fas fa-search"></i>
                             </span>
-                            <input type="text" id="input-busca-musica" placeholder="Busque por música ou artista..." class="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 pl-10 pr-4 p-3 rounded-xl text-slate-800 focus:outline-none transition shadow-inner">
+                            <input type="text" id="input-busca-musica" placeholder="Busque por música ou artista..."
+                                class="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 pl-10 pr-4 p-3 rounded-xl text-slate-800 focus:outline-none transition shadow-inner">
                         </div>
 
-                        <div id="lista-resultados-musica" class="bg-white border border-slate-100 rounded-xl max-h-48 overflow-y-auto hidden shadow-lg divide-y divide-slate-50"></div>
+                        <div id="lista-resultados-musica"
+                            class="bg-white border border-slate-100 rounded-xl max-h-48 overflow-y-auto hidden shadow-lg divide-y divide-slate-50">
+                        </div>
 
                         <div class="pt-2">
-                            <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Nome da Música (Editável)</label>
-                            <input type="text" id="input-nome-musica" placeholder="Nome que aparecerá na tela..." class="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 p-3 rounded-xl text-slate-800 focus:outline-none transition shadow-inner">
+                            <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Nome da Música
+                                (Editável)</label>
+                            <input type="text" id="input-nome-musica" placeholder="Nome que aparecerá na tela..."
+                                class="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 p-3 rounded-xl text-slate-800 focus:outline-none transition shadow-inner">
                         </div>
                     </div>
 
                     <div id="step-5" class="step-content space-y-4 hidden">
                         <h2 class="text-lg sm:text-xl font-bold text-slate-900 mb-1">Escolha as fotos de vocês</h2>
-                        <p class="text-xs text-slate-400 mb-4">Selecione até 5 fotos marcantes. Elas vão virar a capa do álbum.</p>
+                        <p class="text-xs text-slate-400 mb-4">Selecione até 5 fotos marcantes. Elas vão virar a capa do
+                            álbum.</p>
                         <div>
-                            <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Enviar Fotos (Máx. 5)</label>
-                            <input type="file" id="input-fotos" multiple accept="image/*" class="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 p-3 rounded-xl text-slate-800 focus:outline-none transition">
+                            <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Enviar Fotos (Máx.
+                                5)</label>
+                            <input type="file" id="input-fotos" multiple accept="image/*"
+                                class="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 p-3 rounded-xl text-slate-800 focus:outline-none transition">
                         </div>
                     </div>
 
                     <div id="step-6" class="step-content space-y-4 hidden">
                         <h2 class="text-lg sm:text-xl font-bold text-slate-900 mb-1">Escreva sua dedicatória</h2>
-                        <p class="text-xs text-slate-400 mb-4">Abra o coração! Essa mensagem vai aparecer no lugar da letra da música.</p>
+                        <p class="text-xs text-slate-400 mb-4">Abra o coração! Essa mensagem vai aparecer no lugar da
+                            letra da música.</p>
                         <div>
                             <label class="block text-xs font-bold text-slate-500 uppercase mb-2">Sua Mensagem</label>
-                            <textarea id="input-mensagem" rows="4" placeholder="Escreva aqui o quanto você ama essa pessoa..." class="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 p-3 rounded-xl text-slate-800 focus:outline-none transition shadow-inner resize-none"></textarea>
+                            <textarea id="input-mensagem" rows="4"
+                                placeholder="Escreva aqui o quanto você ama essa pessoa..."
+                                class="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 p-3 rounded-xl text-slate-800 focus:outline-none transition shadow-inner resize-none"></textarea>
                         </div>
                     </div>
                 </div>
 
                 <div class="flex justify-between mt-8 pt-4 border-t border-slate-100">
-                    <button id="btn-voltar" class="px-4 py-2 text-sm font-semibold text-slate-400 hover:text-slate-600 transition disabled:opacity-50" disabled>Voltar</button>
+                    <button id="btn-voltar"
+                        class="px-4 py-2 text-sm font-semibold text-slate-400 hover:text-slate-600 transition disabled:opacity-50"
+                        disabled>Voltar</button>
                     <div class="flex gap-2">
-                        <button id="btn-previa" class="px-4 py-2 text-sm font-semibold bg-slate-100 text-slate-700 rounded-full hover:bg-slate-200 transition">
+                        <button id="btn-previa"
+                            class="px-4 py-2 text-sm font-semibold bg-slate-100 text-slate-700 rounded-full hover:bg-slate-200 transition">
                             <i class="far fa-eye mr-1"></i> Prévia
                         </button>
-                        <button id="btn-avancar" class="px-6 py-2 text-sm font-bold bg-blue-600 text-white rounded-full hover:bg-blue-700 hover:scale-102 transition shadow-md shadow-blue-200">Avançar</button>
+                        <button id="btn-avancar"
+                            class="px-6 py-2 text-sm font-bold bg-blue-600 text-white rounded-full hover:bg-blue-700 hover:scale-102 transition shadow-md shadow-blue-200">Avançar</button>
                     </div>
                 </div>
             </div>
@@ -139,75 +171,104 @@
                 </div>
 
                 <!-- O Smartphone Ganhou Degradê Líquido Imersivo estilo Spotify moderno -->
-                <div class="w-full max-w-[340px] sm:max-w-[375px] bg-gradient-to-b from-[#1e3c72] via-[#121212] to-[#000000] text-white rounded-[45px] p-6 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] border-[6px] border-neutral-800 overflow-hidden relative transition-all duration-500">
-                    
+                <div
+                    class="w-full max-w-[340px] sm:max-w-[375px] bg-gradient-to-b from-[#1e3c72] via-[#121212] to-[#000000] text-white rounded-[45px] p-6 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] border-[6px] border-neutral-800 overflow-hidden relative transition-all duration-500">
+
                     <!-- Brilho de fundo (Ambient Light Effect) -->
-                    <div class="absolute -top-20 -left-20 w-52 h-52 bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
+                    <div
+                        class="absolute -top-20 -left-20 w-52 h-52 bg-blue-500/20 rounded-full blur-3xl pointer-events-none">
+                    </div>
 
                     <!-- Header Superior -->
-                    <div class="flex justify-between items-center mb-5 text-xs text-neutral-400 font-semibold relative z-10">
+                    <div
+                        class="flex justify-between items-center mb-5 text-xs text-neutral-400 font-semibold relative z-10">
                         <i class="fas fa-chevron-down text-sm hover:text-white cursor-pointer transition"></i>
-                        <span id="preview-titulo" class="truncate max-w-[180px] font-black text-white tracking-wide uppercase text-[10px]">Nossa Playlist de Amor</span>
+                        <span id="preview-titulo"
+                            class="truncate max-w-[180px] font-black text-white tracking-wide uppercase text-[10px]">Nossa
+                            Playlist de Amor</span>
                         <i class="fas fa-ellipsis-h text-sm hover:text-white cursor-pointer transition"></i>
                     </div>
 
                     <!-- Espaço da Capa com Cantos Bem Arredondados e Sombra Profunda -->
-                    <div class="aspect-square w-full bg-neutral-900/80 rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.7)] mb-6 relative overflow-hidden group border border-white/5 relative z-10">
-                        <div id="preview-foto-placeholder" class="absolute inset-0 flex items-center justify-center text-neutral-700 z-10">
+                    <div
+                        class="aspect-square w-full bg-neutral-900/80 rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.7)] mb-6 relative overflow-hidden group border border-white/5 relative z-10">
+                        <div id="preview-foto-placeholder"
+                            class="absolute inset-0 flex items-center justify-center text-neutral-700 z-10">
                             <i class="far fa-image text-5xl opacity-40"></i>
                         </div>
 
-                        <div id="carousel-container" class="absolute inset-0 flex overflow-x-auto snap-x snap-mandatory scrollbar-none hidden"></div>
-                        <div id="carousel-dots" class="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 z-20 hidden"></div>
+                        <div id="carousel-container"
+                            class="absolute inset-0 flex overflow-x-auto snap-x snap-mandatory scrollbar-none hidden">
+                        </div>
+                        <div id="carousel-dots"
+                            class="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 z-20 hidden"></div>
                     </div>
 
                     <!-- Título da Música e Artista Reunidos -->
                     <div class="flex justify-between items-center mb-5 relative z-10">
                         <div class="truncate pr-4 w-[85%]">
                             <!-- Aqui entra o Nome da Música escolhida -->
-                            <h3 id="preview-track-name" class="text-xl font-black tracking-tight truncate text-white">Nossa Playlist de Amor</h3>
+                            <h3 id="preview-track-name" class="text-xl font-black tracking-tight truncate text-white">
+                                Nossa Playlist de Amor</h3>
                             <!-- Identificadores separados para Artista e para o Casal -->
-                            <p id="preview-track-artist" class="text-xs font-bold text-emerald-400 truncate mt-0.5 hidden">Artista da música</p>
-                            <p id="preview-casal" class="text-xs font-medium text-neutral-400 truncate mt-0.5">Gabriel & Mariana</p>
+                            <p id="preview-track-artist"
+                                class="text-xs font-bold text-emerald-400 truncate mt-0.5 hidden">Artista da música</p>
+                            <p id="preview-casal" class="text-xs font-medium text-neutral-400 truncate mt-0.5">Gabriel &
+                                Mariana</p>
                         </div>
-                        <button class="text-neutral-400 hover:text-emerald-400 text-xl transition transform active:scale-90"><i class="far fa-heart"></i></button>
+                        <button
+                            class="text-neutral-400 hover:text-emerald-400 text-xl transition transform active:scale-90"><i
+                                class="far fa-heart"></i></button>
                     </div>
 
                     <!-- Barra de Progresso Interativa com visual atualizado -->
                     <div id="spotify-player-wrapper" class="mb-5 relative z-10">
-                        <div class="w-full bg-neutral-700/60 h-[4px] rounded-full overflow-hidden mb-2 cursor-pointer group relative">
-                            <div class="bg-white h-full w-1/3 rounded-full group-hover:bg-emerald-400 transition-colors"></div>
+                        <div
+                            class="w-full bg-neutral-700/60 h-[4px] rounded-full overflow-hidden mb-2 cursor-pointer group relative">
+                            <div
+                                class="bg-white h-full w-1/3 rounded-full group-hover:bg-emerald-400 transition-colors">
+                            </div>
                         </div>
-                        <div class="flex justify-between text-[10px] text-neutral-400 font-bold font-mono tracking-wider">
+                        <div
+                            class="flex justify-between text-[10px] text-neutral-400 font-bold font-mono tracking-wider">
                             <span>0:00</span>
                             <span>3:45</span>
                         </div>
-                        
+
                         <!-- Controles Principais de Mídia -->
                         <div class="flex justify-between items-center px-2 mt-4">
-                            <i class="fas fa-shuffle text-neutral-500 hover:text-white cursor-pointer text-xs transition"></i>
-                            <i class="fas fa-backward-step text-neutral-200 hover:text-white cursor-pointer text-lg transition transform active:scale-90"></i>
-                            
+                            <i
+                                class="fas fa-shuffle text-neutral-500 hover:text-white cursor-pointer text-xs transition"></i>
+                            <i
+                                class="fas fa-backward-step text-neutral-200 hover:text-white cursor-pointer text-lg transition transform active:scale-90"></i>
+
                             <!-- Botão Interativo Play/Pause com ID e cursor adequados -->
-                            <div class="bg-white text-black w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 cursor-pointer transition-all">
-                                <i id="btn-play-pause" class="fas fa-play text-xl ml-0.5"></i>
+                            <!-- Botão Interativo Play/Pause CORRIGIDO (ID movido para o container circular) -->
+                            <div id="btn-play-pause"
+                                class="bg-white text-black w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 cursor-pointer transition-all select-none">
+                                <i class="fas fa-play text-xl ml-0.5"></i>
                             </div>
-                            
-                            <i class="fas fa-forward-step text-neutral-200 hover:text-white cursor-pointer text-lg transition transform active:scale-90"></i>
+
+                            <i
+                                class="fas fa-forward-step text-neutral-200 hover:text-white cursor-pointer text-lg transition transform active:scale-90"></i>
                             <i class="fas fa-repeat text-emerald-400 text-xs cursor-pointer"></i>
                         </div>
                     </div>
 
                     <!-- Seção Letra / Dedicatória Transformada em Glassmorphism Semitransparente -->
-                    <div class="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-4 space-y-4 shadow-inner relative z-10">
-                        <div class="flex justify-between items-center text-[9px] font-black uppercase tracking-widest text-neutral-400">
+                    <div
+                        class="bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-4 space-y-4 shadow-inner relative z-10">
+                        <div
+                            class="flex justify-between items-center text-[9px] font-black uppercase tracking-widest text-neutral-400">
                             <span>História & Dedicatória</span>
                             <i class="fas fa-expand-alt text-neutral-400 hover:text-white cursor-pointer text-xs"></i>
                         </div>
 
                         <!-- Contador de Tempo Organizado -->
                         <div class="bg-black/40 p-2.5 rounded-xl border border-white/5">
-                            <p class="text-[9px] font-black text-emerald-400 uppercase tracking-widest mb-2 text-center">Tempo Juntos</p>
+                            <p
+                                class="text-[9px] font-black text-emerald-400 uppercase tracking-widest mb-2 text-center">
+                                Tempo Juntos</p>
                             <div id="preview-contador" class="grid grid-cols-4 gap-1 text-center font-mono text-xs">
                                 <div class="bg-neutral-900/80 p-1.5 rounded-lg border border-white/5">
                                     <span class="block font-black text-white text-sm">00</span>
@@ -229,8 +290,10 @@
                         </div>
 
                         <!-- Texto da Dedicatória Limpo e Elegante -->
-                        <p id="preview-mensagem" class="text-xs sm:text-sm font-bold text-neutral-200 leading-relaxed tracking-wide break-words italic">
-                            "Sua mensagem carinhosa aparecerá bem aqui, dividida em linhas como a letra de uma música oficial do Spotify..."
+                        <p id="preview-mensagem"
+                            class="text-xs sm:text-sm font-bold text-neutral-200 leading-relaxed tracking-wide break-words italic">
+                            "Sua mensagem carinhosa aparecerá bem aqui, dividida em linhas como a letra de uma música
+                            oficial do Spotify..."
                         </p>
                     </div>
 

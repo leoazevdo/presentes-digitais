@@ -468,40 +468,16 @@ function onPlayerMascaraReady(event) {
  * Evento: Mudança de estado (tocando, pausado, bufferizando)
  */
 function onPlayerMascaraStateChange(event) {
-    // Recaptura elementos dinâmicos do HTML (garantindo que existem)
-    const iconePlayFalso = document.getElementById('icone-play-falso');
-    const barraProgresso = document.getElementById('barra-progresso-player');
-    const tempoAtualTxt = document.getElementById('tempo-atual');
-    const tempoTotalTxt = document.getElementById('tempo-total');
+    const btnPlayPause = document.getElementById('btn-play-pause');
+    if (!btnPlayPause) return;
+    
+    const icone = btnPlayPause.querySelector('i');
+    if (!icone) return;
 
-    if (!iconePlayFalso) return;
-
-    // Estado: TOCANDO
     if (event.data === YT.PlayerState.PLAYING) {
-        // Mudar visual para PAUSE (ícone de traço duplo)
-        iconePlayFalso.className = "fas fa-pause-circle text-white text-4xl";
-        
-        // Loop de alta precisão (500ms) para sincronizar barra verde do Spotify
-        clearInterval(intervaloProgressoAudio);
-        intervaloProgressoAudio = setInterval(() => {
-            // Segurança: verifica se objeto do player ainda é válido
-            if (!ytPlayerObjeto || typeof ytPlayerObjeto.getCurrentTime !== 'function') return;
-            
-            const tempoAtual = ytPlayerObjeto.getCurrentTime();
-            const tempoTotal = ytPlayerObjeto.getDuration() || 1; // Evita divisão por zero
-            const porcentagem = (tempoAtual / tempoTotal) * 100;
-            
-            // Atualização visual milimétrica
-            if (barraProgresso) barraProgresso.style.width = `${porcentagem}%`;
-            if (tempoAtualTxt) tempoAtualTxt.innerText = formatarTempoSpotify(tempoAtual);
-            if (tempoTotalTxt) tempoTotalTxt.innerText = formatarTempoSpotify(tempoTotal);
-        }, 500);
-
+        icone.className = "fas fa-pause text-xl";
     } else {
-        // Estados: PAUSADO, BUFFERING, ENCERRADO, etc.
-        // Mudar visual para PLAY (ícone de triângulo)
-        iconePlayFalso.className = "fas fa-play-circle text-white text-4xl";
-        clearInterval(intervaloProgressoAudio);
+        icone.className = "fas fa-play text-xl ml-0.5";
     }
 }
 
@@ -688,24 +664,31 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // CONTROLE DE PLAY / PAUSE DO PLAYER DO YOUTUBE
-const btnPlayPause = document.getElementById('btn-play-pause'); // Mude para o ID do seu botão
+const btnPlayPause = document.getElementById('btn-play-pause');
 
 if (btnPlayPause) {
     btnPlayPause.addEventListener('click', () => {
-        // Verifica se o objeto do player do YouTube já foi criado e está pronto
+        // Valida se o player do YouTube está pronto
         if (!ytPlayerObjeto || typeof ytPlayerObjeto.getPlayerState !== 'function') return;
 
         const estadoAtual = ytPlayerObjeto.getPlayerState();
+        const icone = btnPlayPause.querySelector('i');
 
-        // Estados do YT: 1 = Tocando, 2 = Pausado
+        // Se estiver TOCANDO (1), o clique vai PAUSAR a música
         if (estadoAtual === 1) {
             ytPlayerObjeto.pauseVideo();
-            // Aqui você pode mudar o ícone do seu botão para "Play"
-            btnPlayPause.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" /></svg>`;
-        } else {
+            if (icone) {
+                // Exibe o ícone de Play com o ajuste óptico 'ml-0.5' para centralizar o triângulo
+                icone.className = "fas fa-play text-xl ml-0.5";
+            }
+        } 
+        // Se estiver PAUSADO (2) ou não iniciado, o clique vai DAR PLAY
+        else {
             ytPlayerObjeto.playVideo();
-            // Aqui você pode mudar o ícone do seu botão para "Pause"
-            btnPlayPause.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" /></svg>`;
+            if (icone) {
+                // Exibe o ícone de Pause (symmetrical, não precisa do 'ml-0.5')
+                icone.className = "fas fa-pause text-xl";
+            }
         }
     });
 }
