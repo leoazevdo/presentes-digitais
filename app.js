@@ -30,9 +30,9 @@ let musicaSelecionadaDados = {
     youtube_busca_termo: ""
 };
 
-const SPOTIFY_CLIENT_ID = "28fc1438575a436c9c9701fd4f7a56a3";
-const SPOTIFY_CLIENT_SECRET = "61539570971046c1a112aad40a123d7d";
-const YOUTUBE_API_KEY = "AIzaSyDZwWn8Fvpf6r_wmJfsrAauIJFkAyJsyyw"; 
+const SPOTIFY_CLIENT_ID = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
+const SPOTIFY_CLIENT_SECRET = import.meta.env.VITE_SPOTIFY_CLIENT_SECRET;
+const YOUTUBE_API_KEY = import.meta.env.VITE_YOUTUBE_API_KEY; 
 
 // ==========================================
 // 2. INICIALIZAÇÃO SEGURA (GARANTE QUE O HTML CARREGOU)
@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputNomeMusica = document.getElementById('input-nome-musica');
     const inputFotos = document.getElementById('input-fotos');
     const inputMensagem = document.getElementById('input-mensagem');
+    const inputFotoCapaHistoria = document.getElementById('input-foto-capa-historia');
 
     const previewTituloTop = document.getElementById('preview-titulo');
     const previewTrackName = document.getElementById('preview-track-name');
@@ -343,6 +344,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    if (inputFotoCapaHistoria) {
+    inputFotoCapaHistoria.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        
+        // Diagnóstico 1: Verifica se o arquivo foi pego corretamente
+        if (!file) return;
+
+        // Diagnóstico 2: Busca o elemento do mockup novamente para garantir que ele existe na tela
+        const fotoMockup = document.getElementById('preview-capa-historia');
+        
+        if (!fotoMockup) {
+            console.error("ERRO: O JavaScript não encontrou nenhuma tag no HTML com o id='preview-capa-historia'");
+            alert("Erro interno: Tag de imagem do mockup não foi encontrada. Verifique os IDs no HTML.");
+            return;
+        }
+
+        // Se passou nos testes, faz a troca da imagem
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            fotoMockup.src = event.target.result;
+        };
+        reader.readAsDataURL(file);
+    });
+} else {
+    console.error("ERRO: O JavaScript não encontrou o campo de upload com o id='input-foto-capa-historia'");
+}
     if (btnVoltar) {
         btnVoltar.addEventListener('click', () => {
             if (currentStep > 1) {
