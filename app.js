@@ -342,6 +342,16 @@ function renderizarResultadosSpotify(tracks) {
        item.addEventListener('click', async () => {
             const termoBuscaYT = `${nomeMusica} ${artista} official audio`;
             inputNomeMusica.value = `${nomeMusica} - ${artista}`;
+
+            const elementoNomePreview = document.getElementById('preview-nome-musica');
+            const elementoArtistaPreview = document.getElementById('preview-artista-musica');
+            const elementoCapaPreview = document.getElementById('preview-capa-musica');
+
+            if (elementoNomePreview) elementoNomePreview.textContent = nomeMusica;
+            if (elementoArtistaPreview) elementoArtistaPreview.textContent = artista;
+            if (elementoCapaPreview && track.album.images[0]?.url) {
+                elementoCapaPreview.src = track.album.images[0].url;
+            }
             
             listaResultadosMusica.classList.add('hidden');
             inputBuscaMusica.value = '';
@@ -676,3 +686,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // Preenche nomes padrão no preview
     atualizarNomesPreview();
 });
+
+// CONTROLE DE PLAY / PAUSE DO PLAYER DO YOUTUBE
+const btnPlayPause = document.getElementById('btn-play-pause'); // Mude para o ID do seu botão
+
+if (btnPlayPause) {
+    btnPlayPause.addEventListener('click', () => {
+        // Verifica se o objeto do player do YouTube já foi criado e está pronto
+        if (!ytPlayerObjeto || typeof ytPlayerObjeto.getPlayerState !== 'function') return;
+
+        const estadoAtual = ytPlayerObjeto.getPlayerState();
+
+        // Estados do YT: 1 = Tocando, 2 = Pausado
+        if (estadoAtual === 1) {
+            ytPlayerObjeto.pauseVideo();
+            // Aqui você pode mudar o ícone do seu botão para "Play"
+            btnPlayPause.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" /></svg>`;
+        } else {
+            ytPlayerObjeto.playVideo();
+            // Aqui você pode mudar o ícone do seu botão para "Pause"
+            btnPlayPause.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" /></svg>`;
+        }
+    });
+}
