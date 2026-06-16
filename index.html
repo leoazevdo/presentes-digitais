@@ -178,16 +178,17 @@
             </div>
 
             <!-- SEÇÃO DE PREVIEW (MOCKUP DO SMARTPHONE - ESTILO SPOTIFY) -->
-            <div id="preview-section" class="flex flex-col items-center sticky top-8 order-2 mt-4 lg:mt-0">
+            
+           <div id="preview-section" class="flex flex-col items-center sticky top-8 order-2 mt-4 lg:mt-0">
     <div class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3 flex items-center gap-2">
         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Visualização em Tempo Real
     </div>
 
-    <div class="w-full max-w-[340px] sm:max-w-[375px] h-[640px] bg-gradient-to-b from-[#1e3c72] via-[#121212] to-[#000000] text-white rounded-[45px] p-6 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] border-[6px] border-neutral-800 overflow-hidden relative transition-all duration-500 flex flex-col">
+    <div class="w-full max-w-[340px] sm:max-w-[375px] h-[640px] bg-gradient-to-b from-[#1e3c72] via-[#121212] to-[#000000] text-white rounded-[45px] pt-6 pb-4 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] border-[6px] border-neutral-800 overflow-hidden relative transition-all duration-500 flex flex-col">
 
         <div class="absolute -top-20 -left-20 w-52 h-52 bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
-        <div class="flex justify-between items-center mb-5 text-xs text-neutral-400 font-semibold relative z-10 flex-shrink-0">
+        <div class="flex justify-between items-center mb-5 text-xs text-neutral-400 font-semibold relative z-10 flex-shrink-0 px-6">
             <i class="fas fa-chevron-down text-sm hover:text-white cursor-pointer transition"></i>
             <span id="preview-titulo" class="truncate max-w-[180px] font-black text-white tracking-wide uppercase text-[10px]">
                 Nossa Playlist de Amor
@@ -195,18 +196,17 @@
             <i class="fas fa-ellipsis-h text-sm hover:text-white cursor-pointer transition"></i>
         </div>
 
-        <div class="flex-1 overflow-y-auto space-y-6 pr-1 relative z-10 scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-transparent">
+        <div class="flex-1 overflow-y-auto space-y-6 pl-6 pr-2 pb-4 relative z-10 scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-transparent">
 
-            <div class="aspect-square w-full bg-neutral-900/80 rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.7)] relative overflow-hidden group border border-white/5">
+            <div class="aspect-square w-full bg-neutral-900/80 rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.7)] relative overflow-hidden group border border-white/5 mr-4">
                 <div id="preview-foto-placeholder" class="absolute inset-0 flex items-center justify-center text-neutral-700 z-10">
                     <i class="far fa-image text-5xl opacity-40"></i>
                 </div>
-
                 <div id="carousel-container" class="absolute inset-0 flex overflow-x-auto snap-x snap-mandatory scrollbar-none hidden"></div>
                 <div id="carousel-dots" class="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 z-20 hidden"></div>
             </div>
 
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center pr-4">
                 <div class="truncate pr-4 w-[85%]">
                     <h3 id="preview-track-name" class="text-xl font-black tracking-tight truncate text-white">
                         Nossa Playlist de Amor
@@ -219,7 +219,7 @@
                 </button>
             </div>
 
-            <div id="spotify-player-wrapper" class="relative">
+            <div id="spotify-player-wrapper" class="relative pr-4">
                 <div class="w-full bg-neutral-700/60 h-[4px] rounded-full overflow-hidden mb-2 cursor-pointer group relative">
                     <div class="bg-white h-full w-1/3 rounded-full group-hover:bg-emerald-400 transition-colors"></div>
                 </div>
@@ -241,38 +241,77 @@
                 </div>
             </div>
 
-            <div class="bg-neutral-900/40 p-4 rounded-xl border border-neutral-800 space-y-4">
-                <h3 class="text-white font-bold text-base mb-1">Nossa História</h3>
-                
-                <div class="w-full aspect-square rounded-lg overflow-hidden bg-neutral-800 flex items-center justify-center">
-                    <img id="preview-capa-historia" src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=500" class="w-full h-full object-cover" alt="Nossa História">
-                </div>
+            <!-- =================================================== -->
+<!-- SEÇÃO: NOSSA HISTÓRIA (FOTO TOTAL + INFOS DO CASAL) -->
+<!-- =================================================== -->
+<div class="bg-neutral-900/40 rounded-3xl border border-neutral-800/80 overflow-hidden mr-4 shadow-xl flex flex-col">
+    
+    <!-- 1. Bloco Superior: Imagem com Título "Nossa História" Sobressaindo -->
+    <div class="w-full aspect-square relative overflow-hidden bg-neutral-950 flex-shrink-0">
+        <!-- A Foto do Casal -->
+        <img id="preview-capa-historia" src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=500" class="w-full h-full object-cover absolute inset-0" alt="Nossa História">
+        
+        <!-- Degradê escuro para dar contraste e leitura ao título -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/20"></div>
+        
+        <!-- Título "Nossa História" flutuando por cima no topo esquerdo -->
+        <div class="absolute top-4 left-5 z-20 drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+            <h3 class="text-white font-black text-[10px] tracking-tight uppercase pb-0.5 inline-block">
+                Nossa História
+            </h3>
+        </div>
+    </div>
 
-                <div class="bg-black/40 p-2.5 rounded-xl border border-white/5">
-                    <p class="text-[9px] font-black text-emerald-400 uppercase tracking-widest mb-2 text-center">Tempo Juntos</p>
-                    <div id="preview-contador" class="grid grid-cols-4 gap-1 text-center font-mono text-xs">
-                        <div class="bg-neutral-900/80 p-1.5 rounded-lg border border-white/5">
-                            <span class="block font-black text-white text-sm">00</span>
-                            <span class="text-[7px] uppercase font-bold text-neutral-500">Dias</span>
-                        </div>
-                        <div class="bg-neutral-900/80 p-1.5 rounded-lg border border-white/5">
-                            <span class="block font-black text-white text-sm">00</span>
-                            <span class="text-[7px] uppercase font-bold text-neutral-500">Horas</span>
-                        </div>
-                        <div class="bg-neutral-900/80 p-1.5 rounded-lg border border-white/5">
-                            <span class="block font-black text-white text-sm">00</span>
-                            <span class="text-[7px] uppercase font-bold text-neutral-500">Min</span>
-                        </div>
-                        <div class="bg-neutral-900/80 p-1.5 rounded-lg border border-white/5">
-                            <span class="block font-black text-emerald-400 animate-pulse text-sm">00</span>
-                            <span class="text-[7px] uppercase font-bold text-neutral-500">Seg</span>
-                        </div>
-                    </div>
-                </div>
+    <!-- 2. Bloco Inferior: Dados do Casal e Contador (Mesmo Bloco da Imagem) -->
+    <div class="p-5 text-center flex flex-col items-center justify-center bg-gradient-to-b from-neutral-900/60 to-black/40">
+        
+        <!-- EM CIMA: Nome do Casal -->
+        <h4 id="preview-historia-casal" class="text-white font-black text-base tracking-tight mb-3">Gabriel & Mariana</h4>
 
-                <p id="preview-mensagem" class="text-xs sm:text-sm font-bold text-neutral-200 leading-relaxed tracking-wide break-words italic">
-                    "Sua mensagem carinhosa aparecerá bem aqui, dividida em linhas como a letra de uma música oficial do Spotify..."
-                </p>
+        <!-- NO MEIO: O Contador -->
+        <div id="preview-contador" class="grid grid-cols-4 gap-2 font-mono text-xs w-full mb-3.5">
+            <div class="bg-black/50 p-2 rounded-xl border border-white/5 shadow-inner">
+                <span class="block font-black text-white text-sm">00</span>
+                <span class="text-[7px] uppercase font-bold text-neutral-400">Dias</span>
+            </div>
+            <div class="bg-black/50 p-2 rounded-xl border border-white/5 shadow-inner">
+                <span class="block font-black text-white text-sm">00</span>
+                <span class="text-[7px] uppercase font-bold text-neutral-400">Hrs</span>
+            </div>
+            <div class="bg-black/50 p-2 rounded-xl border border-white/5 shadow-inner">
+                <span class="block font-black text-white text-sm">00</span>
+                <span class="text-[7px] uppercase font-bold text-neutral-400">Min</span>
+            </div>
+            <div class="bg-black/50 p-2 rounded-xl border border-white/5 shadow-inner">
+                <span class="block font-black text-emerald-400 animate-pulse text-sm">00</span>
+                <span class="text-[7px] uppercase font-bold text-neutral-400">Seg</span>
+            </div>
+        </div>
+
+        <!-- EMBAIXO: Juntos desde... -->
+        <p class="text-[11px] text-neutral-400 font-medium tracking-wide">
+            Juntos desde <span id="preview-historia-data" class="font-bold text-emerald-400">00/00/0000</span>
+        </p>
+
+    </div>
+</div>
+
+<!-- =================================================== -->
+<!-- SEÇÃO: MENSAGEM ESPECIAL (Estilo Letra do Spotify)  -->
+<!-- =================================================== -->
+<div class="bg-[#e64a19] p-5 rounded-2xl space-y-3 mr-4 mt-4 shadow-xl">
+    <div class="flex justify-between items-center">
+        <h3 class="text-white font-black text-xs tracking-wider uppercase opacity-90">Mensagem Especial</h3>
+        <span class="text-[9px] font-black bg-black/20 text-white px-2 py-0.5 rounded-full">LYRICS</span>
+    </div>
+
+    <!-- Texto da Dedicatória -->
+    <p id="preview-mensagem" class="text-base sm:text-lg font-extrabold text-white leading-snug tracking-tight break-words text-left">
+        "Sua mensagem carinhosa aparecerá bem aqui, dividida em linhas marcantes como a letra de uma música oficial do Spotify..."
+    </p>
+</div>
+
+    
             </div>
 
         </div>
