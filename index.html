@@ -179,145 +179,104 @@
 
             <!-- SEÇÃO DE PREVIEW (MOCKUP DO SMARTPHONE - ESTILO SPOTIFY) -->
             <div id="preview-section" class="flex flex-col items-center sticky top-8 order-2 mt-4 lg:mt-0">
-                <div class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3 flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Visualização em Tempo Real
+    <div class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3 flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Visualização em Tempo Real
+    </div>
+
+    <div class="w-full max-w-[340px] sm:max-w-[375px] h-[640px] bg-gradient-to-b from-[#1e3c72] via-[#121212] to-[#000000] text-white rounded-[45px] p-6 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] border-[6px] border-neutral-800 overflow-hidden relative transition-all duration-500 flex flex-col">
+
+        <div class="absolute -top-20 -left-20 w-52 h-52 bg-blue-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="flex justify-between items-center mb-5 text-xs text-neutral-400 font-semibold relative z-10 flex-shrink-0">
+            <i class="fas fa-chevron-down text-sm hover:text-white cursor-pointer transition"></i>
+            <span id="preview-titulo" class="truncate max-w-[180px] font-black text-white tracking-wide uppercase text-[10px]">
+                Nossa Playlist de Amor
+            </span>
+            <i class="fas fa-ellipsis-h text-sm hover:text-white cursor-pointer transition"></i>
+        </div>
+
+        <div class="flex-1 overflow-y-auto space-y-6 pr-1 relative z-10 scrollbar-thin scrollbar-thumb-neutral-800 scrollbar-track-transparent">
+
+            <div class="aspect-square w-full bg-neutral-900/80 rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.7)] relative overflow-hidden group border border-white/5">
+                <div id="preview-foto-placeholder" class="absolute inset-0 flex items-center justify-center text-neutral-700 z-10">
+                    <i class="far fa-image text-5xl opacity-40"></i>
                 </div>
 
-                <!-- O Smartphone Ganhou Degradê Líquido Imersivo estilo Spotify moderno -->
-                <div
-                    class="w-full max-w-[340px] sm:max-w-[375px] bg-gradient-to-b from-[#1e3c72] via-[#121212] to-[#000000] text-white rounded-[45px] p-6 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] border-[6px] border-neutral-800 overflow-hidden relative transition-all duration-500">
+                <div id="carousel-container" class="absolute inset-0 flex overflow-x-auto snap-x snap-mandatory scrollbar-none hidden"></div>
+                <div id="carousel-dots" class="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 z-20 hidden"></div>
+            </div>
 
-                    <!-- Brilho de fundo (Ambient Light Effect) -->
-                    <div
-                        class="absolute -top-20 -left-20 w-52 h-52 bg-blue-500/20 rounded-full blur-3xl pointer-events-none">
+            <div class="flex justify-between items-center">
+                <div class="truncate pr-4 w-[85%]">
+                    <h3 id="preview-track-name" class="text-xl font-black tracking-tight truncate text-white">
+                        Nossa Playlist de Amor
+                    </h3>
+                    <p id="preview-track-artist" class="text-xs font-bold text-emerald-400 truncate mt-0.5 hidden">Artista da música</p>
+                    <p id="preview-casal" class="text-xs font-medium text-neutral-400 truncate mt-0.5">Gabriel & Mariana</p>
+                </div>
+                <button class="text-neutral-400 hover:text-emerald-400 text-xl transition transform active:scale-90">
+                    <i class="far fa-heart"></i>
+                </button>
+            </div>
+
+            <div id="spotify-player-wrapper" class="relative">
+                <div class="w-full bg-neutral-700/60 h-[4px] rounded-full overflow-hidden mb-2 cursor-pointer group relative">
+                    <div class="bg-white h-full w-1/3 rounded-full group-hover:bg-emerald-400 transition-colors"></div>
+                </div>
+                <div class="flex justify-between text-[10px] text-neutral-400 font-bold font-mono tracking-wider">
+                    <span>0:00</span>
+                    <span>3:45</span>
+                </div>
+
+                <div class="flex justify-between items-center px-2 mt-4">
+                    <i class="fas fa-shuffle text-neutral-500 hover:text-white cursor-pointer text-xs transition"></i>
+                    <i class="fas fa-backward-step text-neutral-200 hover:text-white cursor-pointer text-lg transition transform active:scale-90"></i>
+
+                    <div id="btn-play-pause" class="cursor-pointer bg-white text-black w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-all select-none">
+                        <i class="fas fa-play text-xl ml-0.5"></i>
                     </div>
 
-                    <!-- Header Superior -->
-                    <div
-                        class="flex justify-between items-center mb-5 text-xs text-neutral-400 font-semibold relative z-10">
-                        <i class="fas fa-chevron-down text-sm hover:text-white cursor-pointer transition"></i>
-                        <span id="preview-titulo"
-                            class="truncate max-w-[180px] font-black text-white tracking-wide uppercase text-[10px]">Nossa
-                            Playlist de Amor</span>
-                        <i class="fas fa-ellipsis-h text-sm hover:text-white cursor-pointer transition"></i>
-                    </div>
+                    <i class="fas fa-forward-step text-neutral-200 hover:text-white cursor-pointer text-lg transition transform active:scale-90"></i>
+                    <i class="fas fa-repeat text-emerald-400 text-xs cursor-pointer"></i>
+                </div>
+            </div>
 
-                    <!-- Espaço da Capa com Cantos Bem Arredondados e Sombra Profunda -->
-                    <div
-                        class="aspect-square w-full bg-neutral-900/80 rounded-2xl shadow-[0_20px_40px_rgba(0,0,0,0.7)] mb-6 relative overflow-hidden group border border-white/5 relative z-10">
-                        <div id="preview-foto-placeholder"
-                            class="absolute inset-0 flex items-center justify-center text-neutral-700 z-10">
-                            <i class="far fa-image text-5xl opacity-40"></i>
+            <div class="bg-neutral-900/40 p-4 rounded-xl border border-neutral-800 space-y-4">
+                <h3 class="text-white font-bold text-base mb-1">Nossa História</h3>
+                
+                <div class="w-full aspect-square rounded-lg overflow-hidden bg-neutral-800 flex items-center justify-center">
+                    <img id="preview-capa-historia" src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=500" class="w-full h-full object-cover" alt="Nossa História">
+                </div>
+
+                <div class="bg-black/40 p-2.5 rounded-xl border border-white/5">
+                    <p class="text-[9px] font-black text-emerald-400 uppercase tracking-widest mb-2 text-center">Tempo Juntos</p>
+                    <div id="preview-contador" class="grid grid-cols-4 gap-1 text-center font-mono text-xs">
+                        <div class="bg-neutral-900/80 p-1.5 rounded-lg border border-white/5">
+                            <span class="block font-black text-white text-sm">00</span>
+                            <span class="text-[7px] uppercase font-bold text-neutral-500">Dias</span>
                         </div>
-
-                        <div id="carousel-container"
-                            class="absolute inset-0 flex overflow-x-auto snap-x snap-mandatory scrollbar-none hidden">
+                        <div class="bg-neutral-900/80 p-1.5 rounded-lg border border-white/5">
+                            <span class="block font-black text-white text-sm">00</span>
+                            <span class="text-[7px] uppercase font-bold text-neutral-500">Horas</span>
                         </div>
-                        <div id="carousel-dots"
-                            class="absolute bottom-3 left-0 right-0 flex justify-center gap-1.5 z-20 hidden"></div>
-                    </div>
-
-                    <!-- Título da Música e Artista Reunidos -->
-                    <div class="flex justify-between items-center mb-5 relative z-10">
-                        <div class="truncate pr-4 w-[85%]">
-                            <!-- Aqui entra o Nome da Música escolhida -->
-                            <h3 id="preview-track-name" class="text-xl font-black tracking-tight truncate text-white">
-                                Nossa Playlist de Amor</h3>
-                            <!-- Identificadores separados para Artista e para o Casal -->
-                            <p id="preview-track-artist"
-                                class="text-xs font-bold text-emerald-400 truncate mt-0.5 hidden">Artista da música</p>
-                            <p id="preview-casal" class="text-xs font-medium text-neutral-400 truncate mt-0.5">Gabriel &
-                                Mariana</p>
+                        <div class="bg-neutral-900/80 p-1.5 rounded-lg border border-white/5">
+                            <span class="block font-black text-white text-sm">00</span>
+                            <span class="text-[7px] uppercase font-bold text-neutral-500">Min</span>
                         </div>
-                        <button
-                            class="text-neutral-400 hover:text-emerald-400 text-xl transition transform active:scale-90"><i
-                                class="far fa-heart"></i></button>
-                    </div>
-
-                    <!-- Barra de Progresso Interativa com visual atualizado -->
-                    <div id="spotify-player-wrapper" class="mb-5 relative z-10">
-                        <div
-                            class="w-full bg-neutral-700/60 h-[4px] rounded-full overflow-hidden mb-2 cursor-pointer group relative">
-                            <div
-                                class="bg-white h-full w-1/3 rounded-full group-hover:bg-emerald-400 transition-colors">
-                            </div>
-                        </div>
-                        <div
-                            class="flex justify-between text-[10px] text-neutral-400 font-bold font-mono tracking-wider">
-                            <span>0:00</span>
-                            <span>3:45</span>
-                        </div>
-
-                        <!-- Controles Principais de Mídia -->
-                        <div class="flex justify-between items-center px-2 mt-4">
-                            <i
-                                class="fas fa-shuffle text-neutral-500 hover:text-white cursor-pointer text-xs transition"></i>
-                            <i
-                                class="fas fa-backward-step text-neutral-200 hover:text-white cursor-pointer text-lg transition transform active:scale-90"></i>
-
-                            <!-- Botão Interativo Play/Pause com ID e cursor adequados -->
-                            <!-- Botão Interativo Play/Pause CORRIGIDO (ID movido para o container circular) -->
-                            <div id="btn-play-pause"
-                                class="cursor-pointer bg-white text-black w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 cursor-pointer transition-all select-none">
-                                <i class="fas fa-play text-xl ml-0.5"></i>
-                            </div>
-
-                            <i
-                                class="fas fa-forward-step text-neutral-200 hover:text-white cursor-pointer text-lg transition transform active:scale-90"></i>
-                            <i class="fas fa-repeat text-emerald-400 text-xs cursor-pointer"></i>
+                        <div class="bg-neutral-900/80 p-1.5 rounded-lg border border-white/5">
+                            <span class="block font-black text-emerald-400 animate-pulse text-sm">00</span>
+                            <span class="text-[7px] uppercase font-bold text-neutral-500">Seg</span>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Seção Letra / Dedicatória Transformada em Glassmorphism Semitransparente -->
-                    <div class="bg-neutral-900/40 p-4 rounded-xl border border-neutral-800">
-                        <h3 class="text-white font-bold text-base mb-1">Nossa História</h3>
-                        <div
-                            class="w-full aspect-square rounded-lg overflow-hidden mb-3 bg-neutral-800 flex items-center justify-center">
-                            <img id="preview-capa-historia"
-                                src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=500"
-                                class="w-full h-full object-cover" alt="Nossa História">
-                        </div>
-
-
-
-                        <!-- Contador de Tempo Organizado -->
-                        <div class="bg-black/40 p-2.5 rounded-xl border border-white/5">
-                            <p
-                                class="text-[9px] font-black text-emerald-400 uppercase tracking-widest mb-2 text-center">
-                                Tempo Juntos</p>
-                            <div id="preview-contador" class="grid grid-cols-4 gap-1 text-center font-mono text-xs">
-                                <div class="bg-neutral-900/80 p-1.5 rounded-lg border border-white/5">
-                                    <span class="block font-black text-white text-sm">00</span>
-                                    <span class="text-[7px] uppercase font-bold text-neutral-500">Dias</span>
-                                </div>
-                                <div class="bg-neutral-900/80 p-1.5 rounded-lg border border-white/5">
-                                    <span class="block font-black text-white text-sm">00</span>
-                                    <span class="text-[7px] uppercase font-bold text-neutral-500">Horas</span>
-                                </div>
-                                <div class="bg-neutral-900/80 p-1.5 rounded-lg border border-white/5">
-                                    <span class="block font-black text-white text-sm">00</span>
-                                    <span class="text-[7px] uppercase font-bold text-neutral-500">Min</span>
-                                </div>
-                                <div class="bg-neutral-900/80 p-1.5 rounded-lg border border-white/5">
-                                    <span class="block font-black text-emerald-400 animate-pulse text-sm">00</span>
-                                    <span class="text-[7px] uppercase font-bold text-neutral-500">Seg</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Texto da Dedicatória Limpo e Elegante -->
-                        <p id="preview-mensagem"
-                            class="text-xs sm:text-sm font-bold text-neutral-200 leading-relaxed tracking-wide break-words italic">
-                            "Sua mensagem carinhosa aparecerá bem aqui, dividida em linhas como a letra de uma música
-                            oficial do Spotify..."
-                        </p>
-                    </div>
-
-                </div> <!-- FIM DO SMARTPHONE -->
+                <p id="preview-mensagem" class="text-xs sm:text-sm font-bold text-neutral-200 leading-relaxed tracking-wide break-words italic">
+                    "Sua mensagem carinhosa aparecerá bem aqui, dividida em linhas como a letra de uma música oficial do Spotify..."
+                </p>
             </div>
 
         </div>
-    </div>
+        </div> </div>
 
    <script type="module" src="app.js"></script>
 </body>
